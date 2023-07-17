@@ -23,16 +23,23 @@ operations = {
   "/":divide
 }
 
-num1 = int(input("What is the first number?: "))
-
-
-for i in operations:
-  print(i)
-operation_symbol = input("Which one of the operations will you choose? ")
-
-num2 = int(input("What is the second number?: "))
-
-calculation_function = operations[operation_symbol]
-answer = calculation_function(num1, num2)
-
-print(f"Result: {num1} {operation_symbol} {num2} = {answer}")
+def calculator():
+  num1 = int(input("What is the first number?: "))
+  for i in operations:
+    print(i)
+  calculation_continue = True
+  
+  while calculation_continue:
+    operation_symbol = input("Which one of the operations will you choose? ")
+    num2 = int(input("What is the next number?: "))
+    calculation_function = operations[operation_symbol]
+    answer = calculation_function(num1, num2)
+    print(f"Result: {num1} {operation_symbol} {num2} = {answer}")
+    new_number = input("Do you want to use another number? Y or N: ")
+    if new_number == "Y":
+      num1 = answer
+    else:
+      calculation_continue = False
+      calculator()
+    
+calculator()
